@@ -9,11 +9,6 @@ function App() {
   const [agree, setAgree] = useState('flase')
   // ?多個核取方塊，陣列
   const [likeList, setLikeList] = useState([])
-  // ?多勾選(核取方塊)，用物件
-  const [like, setLike] = useState({
-    optionA: false,
-    optionB: false,
-  })
 
   return (
     <>
@@ -143,59 +138,6 @@ function App() {
           }
         }}
         checked={likeList.includes('排骨')}
-      />
-      <label>排骨</label>
-      {/* 用一個陣列來一次產出核取方塊群組 */}
-      {['魯肉', '牛排'].map((v, i) => {
-        return (
-          <React.Fragment key={i}>
-            <input
-              type="checkbox"
-              value={v}
-              onChange={(e) => {
-                const value = e.target.value
-
-                if (!likeList.includes(value)) {
-                  return setLikeList([...likeList, value])
-                }
-
-                if (likeList.includes(value)) {
-                  const newLikeList = likeList.filter((v) => v !== value)
-                  setLikeList(newLikeList)
-                }
-              }}
-              checked={likeList.includes(v)}
-            />
-            <label>{v}</label>
-          </React.Fragment>
-        )
-      })}
-      <hr />
-      <h3>多個核取方塊(物件)</h3>
-      <input
-        type="checkbox"
-        value="optionA"
-        onChange={(e) => {
-          const key = e.target.value
-          setLike({
-            ...like,
-            [key]: !like[key],
-          })
-        }}
-        checked={like.optionA}
-      />
-      <label>雞腿</label>
-      <input
-        type="checkbox"
-        value="optionB"
-        onChange={(e) => {
-          const key = e.target.value
-          setLike({
-            ...like,
-            [key]: !like[key],
-          })
-        }}
-        checked={like.optionB}
       />
       <label>排骨</label>
     </>

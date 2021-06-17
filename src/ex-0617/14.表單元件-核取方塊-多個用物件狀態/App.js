@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
+import RadioBox from './components/RadioBox'
 
 function App() {
-  const [textfield, setTextField] = useState('')
+  const [textfield, setTextfield] = useState('')
   const [textarea, setTextarea] = useState('')
-  const [selectedOption, setSelectedOption] = useState('請選擇')
+  const [seletedOption, setSeletedOption] = useState('')
   const [gender, setGender] = useState('')
-  // ?單一勾選
-  const [agree, setAgree] = useState('flase')
-  // ?多個核取方塊，陣列
+  // 單一勾選(核取方塊)
+  const [agree, setAgree] = useState(false)
+
+  // 多勾選(核取方塊)，用陣列
   const [likeList, setLikeList] = useState([])
-  // ?多勾選(核取方塊)，用物件
+
+  // 多勾選(核取方塊)，用物件
   const [like, setLike] = useState({
     optionA: false,
     optionB: false,
@@ -22,83 +25,73 @@ function App() {
         type="text"
         value={textfield}
         onChange={(e) => {
-          setTextField(e.target.value)
+          setTextfield(e.target.value)
         }}
       />
       <hr />
       <hr />
-      <h2>文字輸入區域</h2>
+      <h2>文字區域</h2>
+      {/* React中的文字區域是單個元素標記的 */}
       <textarea
-        type="text"
         value={textarea}
         onChange={(e) => {
           setTextarea(e.target.value)
         }}
       />
       <hr />
-      <hr />
       <h2>下拉選單</h2>
       <select
-        value={selectedOption}
+        value={seletedOption}
         onChange={(e) => {
-          setSelectedOption(e.target.value)
+          setSeletedOption(e.target.value)
         }}
       >
         <option value="">請選擇</option>
-        <option value="Apple">Apple</option>
-        <option value="Banana">Banana</option>
-        <option value="Guava">Guava</option>
+        <option value="雞腿">雞腿</option>
+        <option value="魯肉">魯肉</option>
+        <option value="排骨">排骨</option>
+        <option value="水果">水果</option>
       </select>
       <hr />
-      <h3>單選按鈕</h3>
-      <label htmlFor="">男</label>
+      <h3>選項按鈕</h3>
       <input
         type="radio"
-        value="male"
-        checked={gender === 'male'}
+        value="男"
+        checked={gender === '男'}
         onChange={(e) => {
           setGender(e.target.value)
         }}
       />
-      <br />
-      <label htmlFor="">女</label>
+      <label>男</label>
       <input
         type="radio"
-        value="female"
-        checked={gender === 'female'}
+        value="女"
+        checked={gender === '女'}
         onChange={(e) => {
           setGender(e.target.value)
         }}
       />
-      <br />
-      <label htmlFor="">其他</label>
+      <label>女</label>
       <input
         type="radio"
-        value="otherGender"
-        checked={gender === 'otherGender'}
+        value="未定"
+        checked={gender === '未定'}
         onChange={(e) => {
           setGender(e.target.value)
         }}
       />
-      <br />
-      {/* !用陣列來產生選項群組按鈕 */}
-      {['男', '女', '其他'].map((v, i) => {
+      <label>未定</label>
+      {/* 用一個陣列來一次產出選項按鈕群組 */}
+      {['男', '女', '未定'].map((v, i) => {
         return (
-          // 使用簡寫<></>不能加 key 屬性
-          <React.Fragment key={i}>
-            <input
-              type="radio"
-              value={v}
-              checked={gender === v}
-              onChange={(e) => {
-                setGender(e.target.value)
-              }}
-            />
-            <label>{v}</label>
-          </React.Fragment>
+          <RadioBox
+            key={i}
+            value={v}
+            gender={gender}
+            setGender={setGender}
+          />
         )
       })}
-
       <hr />
       <h3>單一核取方塊</h3>
       <input
@@ -108,7 +101,8 @@ function App() {
           setAgree(e.target.checked)
         }}
       />
-      <label htmlFor="">同意</label>
+      <label>我同意註冊相關規定</label>
+
       <hr />
       <h3>多個核取方塊(陣列)</h3>
       <input
@@ -118,11 +112,16 @@ function App() {
           const value = e.target.value
 
           // 陣列沒有包含->加入
-          if (!likeList.includes(value)) setLikeList([...likeList, value])
+          // 加return中斷以下的程式碼
+          if (!likeList.includes(value)) {
+            return setLikeList([...likeList, value])
+          }
 
           // 陣列有包含->移出
           if (likeList.includes(value)) {
-            const newLikeList = likeList.filter((v) => v !== value)
+            const newLikeList = likeList.filter(
+              (v) => v !== value
+            )
             setLikeList(newLikeList)
           }
         }}
@@ -135,10 +134,15 @@ function App() {
         value="排骨"
         onChange={(e) => {
           const value = e.target.value
-          if (!likeList.includes(value)) setLikeList([...likeList, value])
+
+          if (!likeList.includes(value)) {
+            return setLikeList([...likeList, value])
+          }
 
           if (likeList.includes(value)) {
-            const newLikeList = likeList.filter((v) => v !== value)
+            const newLikeList = likeList.filter(
+              (v) => v !== value
+            )
             setLikeList(newLikeList)
           }
         }}
@@ -160,7 +164,9 @@ function App() {
                 }
 
                 if (likeList.includes(value)) {
-                  const newLikeList = likeList.filter((v) => v !== value)
+                  const newLikeList = likeList.filter(
+                    (v) => v !== value
+                  )
                   setLikeList(newLikeList)
                 }
               }}
