@@ -6,19 +6,13 @@ function TodoApp() {
   const [todoInput, setTodoInput] = useState('')
 
   // 待辨事項每個的物件值
-  // todo = {id:number, text:string, completed:bool(default: false), edited:false}
+  // todo = {id:number, text:string, completed:bool(default: false)}
   const [todos, setTodos] = useState([
-    {
-      id: 9999999,
-      text: '努力學React',
-      completed: true,
-      edited: false,
-    },
+    { id: 9999999, text: '努力學React', completed: true },
     {
       id: 9999977,
       text: '買iPhone或安卓手機',
       completed: false,
-      edited: false,
     },
   ])
 
@@ -31,35 +25,6 @@ function TodoApp() {
   //   setAutoIncrement(newAutoIncrement)
   //   return newAutoIncrement
   // }
-
-  // 完成使用
-  const handleEdited = (id) => {
-    // 先由目前的todos拷貝出一個陣列
-    const newTodos = [...todos]
-
-    // 利用id值找到對應的todo項目的索引值
-    // 用findIndex的作法
-    const index = newTodos.findIndex(
-      (item) => item.id === id
-    )
-
-    // 如果有找到就切換completed的true/false
-    if (index !== -1) {
-      newTodos[index].edited = !newTodos[index].edited
-      // 設定回狀態值
-      setTodos(newTodos)
-    }
-
-    // // for迴圈的作法
-    // for (let i = 0; i < newTodos.length; i++) {
-    //   if (newTodos[i].id === id) {
-    //     newTodos[i].completed = !newTodos[i].completed
-    //     break
-    //   }
-    // }
-
-    // setTodos(newTodos)
-  }
 
   // 刪除使用
   const handleDelete = (id) => {
@@ -142,7 +107,6 @@ function TodoApp() {
         todos={todos}
         handleCompleted={handleCompleted}
         handleDelete={handleDelete}
-        handleEdited={handleEdited}
       />
     </>
   )

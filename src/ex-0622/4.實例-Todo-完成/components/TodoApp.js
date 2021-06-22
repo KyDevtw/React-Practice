@@ -32,7 +32,7 @@ function TodoApp() {
   //   return newAutoIncrement
   // }
 
-  // 完成使用
+  // 切換使用
   const handleEdited = (id) => {
     // 先由目前的todos拷貝出一個陣列
     const newTodos = [...todos]
@@ -59,6 +59,29 @@ function TodoApp() {
     // }
 
     // setTodos(newTodos)
+  }
+
+  const handleEditedSave = (id, text) => {
+    // 先拷貝一個新的陣列
+    const newTodos = [...todos]
+
+    // 利用id值找到對應的todo項目的索引值
+    // 用findIndex的作法
+    const index = newTodos.findIndex(
+      (item) => item.id === id
+    )
+
+    // 如果有找到的話
+    if (index !== -1) {
+      //把該項目的文字屬性改成新的
+      newTodos[index].text = text
+
+      // 設定回原本的todos
+      setTodos(newTodos)
+
+      // 切換回原本的狀態
+      handleEdited(id)
+    }
   }
 
   // 刪除使用
@@ -143,6 +166,7 @@ function TodoApp() {
         handleCompleted={handleCompleted}
         handleDelete={handleDelete}
         handleEdited={handleEdited}
+        handleEditedSave={handleEditedSave}
       />
     </>
   )
