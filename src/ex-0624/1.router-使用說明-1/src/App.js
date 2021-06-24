@@ -23,7 +23,7 @@ function App() {
   return (
     <Router>
       <>
-        {/* <h2>用a來連結</h2>
+        <h2>用a來連結</h2>
         <ul>
           <li>
             <a href="/">Home</a>
@@ -38,7 +38,7 @@ function App() {
             <a href="/login">Login</a>
           </li>
         </ul>
-        <hr /> */}
+        <hr />
         <h2>用Link來連結</h2>
         <ul>
           <li>
