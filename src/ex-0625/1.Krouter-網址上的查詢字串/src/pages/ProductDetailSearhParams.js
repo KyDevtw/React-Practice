@@ -3,12 +3,25 @@ import { useEffect, useState } from 'react'
 import { withRouter } from 'react-router-dom'
 
 // 模擬從伺服器端來的產品資料
-import { data } from '../data/'
+import { data } from '../data'
 
-import MultiLevelBreadcrumb from '../components/MultiLevelBreadcrumb'
-
-function ProductDetail(props) {
+function ProductDetailSearchParams(props) {
   console.log(props)
+
+  const searchParams = new URLSearchParams(
+    props.location.search
+  )
+
+  // 網址上的?id=1
+  // 網址上的參數值應是一個字串值
+  const searchParamsId = searchParams.get('id')
+
+  // 網址上的參數值應是一個字串值
+  console.log(
+    'id',
+    searchParams.get('id'),
+    typeof searchParams.get('id')
+  )
 
   const [productItem, setProductItem] = useState({
     id: '',
@@ -23,7 +36,7 @@ function ProductDetail(props) {
   // 從伺服器利用id值抓到本產品的內容
   useEffect(() => {
     const product = data.find((v, i) => {
-      return props.match.params.id === v.id
+      return searchParamsId === v.id
     })
 
     console.log(product)
@@ -34,9 +47,8 @@ function ProductDetail(props) {
 
   return (
     <>
-      <h1>商品詳細頁</h1>
-      <MultiLevelBreadcrumb />
-      <p>目前產品的id值是：{props.match.params.id}</p>
+      <h1>ProductDetailSearchParams</h1>
+      <p>目前產品的id值是：{searchParamsId}</p>
       <div>
         <div className="card" style={{ width: '18rem' }}>
           <img
@@ -68,4 +80,4 @@ function ProductDetail(props) {
 }
 
 // 擴充了此元件的屬性，得到router的三個主要屬性
-export default withRouter(ProductDetail)
+export default withRouter(ProductDetailSearchParams)

@@ -1,5 +1,10 @@
 import React, { useState } from 'react'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+} from 'react-router-dom'
 
 // 導入所需頁面
 import Home from './pages/Home'
@@ -7,9 +12,7 @@ import About from './pages/About'
 import ProductList from './pages/ProductList'
 import Login from './pages/Login'
 import ProductDetail from './pages/ProductDetail'
-import ProductDetailSearchParams from './pages/ProductDetailSearchParams'
-import ProductListForQuerysearch from './pages/ProductListForQuerysearch'
-import NotFoundPage from './pages/NotFoundPage'
+import ProductDetailSearhParams from './pages/ProductDetailSearhParams'
 
 // App的角色或工作
 // 1. 路由器/路由
@@ -32,11 +35,6 @@ function App() {
           </li>
           <li>
             <Link to="/product-list">Product List</Link>
-          </li>
-          <li>
-            <Link to="/product-list-for-querysearch">
-              Product List Querysearch
-            </Link>
           </li>
           <li>
             <Link to="/product-detail">Product Detail</Link>
@@ -63,10 +61,7 @@ function App() {
             <ProductDetail auth={auth} />
           </Route>
           <Route path="/product-detail-searchparams">
-            <ProductDetailSearchParams auth={auth} />
-          </Route>
-          <Route path="/product-list-for-querysearch">
-            <ProductListForQuerysearch auth={auth} />
+            <ProductDetailSearhParams auth={auth} />
           </Route>
           <Route path="/product-list">
             <ProductList auth={auth} />
@@ -79,10 +74,6 @@ function App() {
           </Route>
           <Route exact path="/">
             <Home auth={auth} />
-          </Route>
-          {/* 404頁面 */}
-          <Route path="*">
-            <NotFoundPage />
           </Route>
         </Switch>
       </>

@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 // 模擬從伺服器端來的產品資料
 import { data } from '../data/'
 
-import MultiLevelBreadcrumb from '../components/MultiLevelBreadcrumb'
+import Breadcrumb from '../components/Breadcrumb'
 
 function ProductDetail(props) {
   console.log(props)
@@ -35,7 +35,7 @@ function ProductDetail(props) {
   return (
     <>
       <h1>商品詳細頁</h1>
-      <MultiLevelBreadcrumb />
+      <Breadcrumb />
       <p>目前產品的id值是：{props.match.params.id}</p>
       <div>
         <div className="card" style={{ width: '18rem' }}>

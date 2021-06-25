@@ -4,15 +4,12 @@ import { withRouter, Link } from 'react-router-dom'
 // 模擬從伺服器端來的產品資料
 import { data } from '../data/'
 
-import Breadcrumb from '../components/Breadcrumb'
-
 function ProductList(props) {
   console.log(props)
 
   return (
     <>
-      <h1>商品列表 - {props.title}</h1>
-      <Breadcrumb />
+      <h1>ProductList - {props.title}</h1>
       <ul>
         {data.map((product, i) => {
           return (

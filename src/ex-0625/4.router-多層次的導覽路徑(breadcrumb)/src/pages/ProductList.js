@@ -4,7 +4,7 @@ import { withRouter, Link } from 'react-router-dom'
 // 模擬從伺服器端來的產品資料
 import { data } from '../data/'
 
-import Breadcrumb from '../components/Breadcrumb'
+import MultiLevelBreadcrumb from '../components/MultiLevelBreadcrumb'
 
 function ProductList(props) {
   console.log(props)
@@ -12,12 +12,12 @@ function ProductList(props) {
   return (
     <>
       <h1>商品列表 - {props.title}</h1>
-      <Breadcrumb />
+      <MultiLevelBreadcrumb />
       <ul>
         {data.map((product, i) => {
           return (
             <li key={i}>
-              <Link to={'/product-detail/' + product.id}>
+              <Link to={'/product/detail/' + product.id}>
                 {product.name}/{product.price}
               </Link>
             </li>

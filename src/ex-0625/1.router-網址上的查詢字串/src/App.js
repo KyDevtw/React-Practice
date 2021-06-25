@@ -9,7 +9,6 @@ import Login from './pages/Login'
 import ProductDetail from './pages/ProductDetail'
 import ProductDetailSearchParams from './pages/ProductDetailSearchParams'
 import ProductListForQuerysearch from './pages/ProductListForQuerysearch'
-import NotFoundPage from './pages/NotFoundPage'
 
 // App的角色或工作
 // 1. 路由器/路由
@@ -79,10 +78,6 @@ function App() {
           </Route>
           <Route exact path="/">
             <Home auth={auth} />
-          </Route>
-          {/* 404頁面 */}
-          <Route path="*">
-            <NotFoundPage />
           </Route>
         </Switch>
       </>

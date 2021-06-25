@@ -1,5 +1,10 @@
 import React, { useState } from 'react'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+} from 'react-router-dom'
 
 // 導入所需頁面
 import Home from './pages/Home'
@@ -7,9 +12,9 @@ import About from './pages/About'
 import ProductList from './pages/ProductList'
 import Login from './pages/Login'
 import ProductDetail from './pages/ProductDetail'
-import ProductDetailSearchParams from './pages/ProductDetailSearchParams'
-import ProductListForQuerysearch from './pages/ProductListForQuerysearch'
+import ProductDetailSearhParams from './pages/ProductDetailSearhParams'
 import NotFoundPage from './pages/NotFoundPage'
+import FakePage from './pages/FakePage'
 
 // App的角色或工作
 // 1. 路由器/路由
@@ -31,18 +36,13 @@ function App() {
             <Link to="/about">About</Link>
           </li>
           <li>
-            <Link to="/product-list">Product List</Link>
+            <Link to="/product">Product List</Link>
           </li>
           <li>
-            <Link to="/product-list-for-querysearch">
-              Product List Querysearch
-            </Link>
+            <Link to="/product/detail">Product Detail</Link>
           </li>
           <li>
-            <Link to="/product-detail">Product Detail</Link>
-          </li>
-          <li>
-            <Link to="/product-detail-searchparams">
+            <Link to="/product/detail-searchparams">
               Product Detail SearchParams
             </Link>
           </li>
@@ -59,16 +59,19 @@ function App() {
           {/* 定義網址參數 params */}
           {/* `:id`為一參數值 */}
           {/* 後面加「?」代表可選的 */}
-          <Route path="/product-detail/:id?">
+          <Route path="/product/detail/cart">
+            <FakePage />
+          </Route>
+          <Route path="/product/detail/cart/shipping">
+            <FakePage />
+          </Route>
+          <Route path="/product/detail/:id?">
             <ProductDetail auth={auth} />
           </Route>
-          <Route path="/product-detail-searchparams">
-            <ProductDetailSearchParams auth={auth} />
+          <Route path="/product/detail-searchparams">
+            <ProductDetailSearhParams auth={auth} />
           </Route>
-          <Route path="/product-list-for-querysearch">
-            <ProductListForQuerysearch auth={auth} />
-          </Route>
-          <Route path="/product-list">
+          <Route path="/product">
             <ProductList auth={auth} />
           </Route>
           <Route path="/about">

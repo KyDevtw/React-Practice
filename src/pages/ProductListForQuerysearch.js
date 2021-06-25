@@ -4,29 +4,24 @@ import { withRouter, Link } from 'react-router-dom'
 // 模擬從伺服器端來的產品資料
 import { data } from '../data/'
 
-import Breadcrumb from '../components/Breadcrumb'
-
-function ProductList(props) {
+function ProductListForQuerysearch(props) {
   console.log(props)
 
   return (
     <>
-      <h1>商品列表 - {props.title}</h1>
-      <Breadcrumb />
+      <h1>ProductList - {props.title}</h1>
       <ul>
         {data.map((product, i) => {
           return (
             <li key={i}>
-              <Link to={'/product-detail/' + product.id}>
+              <Link to={'/product-detail-searchparams?id=' + product.id}>
                 {product.name}/{product.price}
               </Link>
             </li>
           )
         })}
       </ul>
-      <h3>
-        會員登入情況: {props.auth ? '已經登入' : '未登入'}
-      </h3>
+      <h3>會員登入情況: {props.auth ? '已經登入' : '未登入'}</h3>
       <button
         onClick={() => {
           props.history.goBack()
@@ -46,4 +41,4 @@ function ProductList(props) {
 }
 
 // 擴充了此元件的屬性，得到router的三個主要屬性
-export default withRouter(ProductList)
+export default withRouter(ProductListForQuerysearch)
