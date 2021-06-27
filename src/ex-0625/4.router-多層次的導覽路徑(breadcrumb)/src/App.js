@@ -42,6 +42,14 @@ function App() {
             <Link to="/product/detail">Product Detail</Link>
           </li>
           <li>
+            <Link to="/product/detail/cart">cart</Link>
+          </li>
+          <li>
+            <Link to="/product/detail/cart/shipping">
+              Shipping
+            </Link>
+          </li>
+          <li>
             <Link to="/product/detail-searchparams">
               Product Detail SearchParams
             </Link>
